@@ -1,5 +1,6 @@
 """Initial source package for telos-f."""
 
+from telos_f.closure import ClosureRegulator, ClosureRule, InquiryState
 from telos_f.models import (
     Anchor,
     AnchorType,
@@ -33,6 +34,9 @@ from telos_f.models import (
 )
 
 __all__ = [
+    "ClosureRegulator",
+    "ClosureRule",
+    "InquiryState",
     "Anchor",
     "AnchorType",
     "Claim",
