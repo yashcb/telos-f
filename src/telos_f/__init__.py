@@ -1,6 +1,7 @@
 """Initial source package for telos-f."""
 
 from telos_f.closure import ClosureRegulator, ClosureRule, InquiryState
+from telos_f.compiler import CompiledInquiry, CompilationTrace, InquiryCompiler
 from telos_f.models import (
     Anchor,
     AnchorType,
@@ -18,6 +19,7 @@ from telos_f.models import (
     Decision,
     DecisionState,
     Inquiry,
+    InquiryType,
     InquiryPacket,
     Interpretation,
     InterpretationStatus,
@@ -35,6 +37,9 @@ from telos_f.models import (
 
 __all__ = [
     "ClosureRegulator",
+    "CompiledInquiry",
+    "CompilationTrace",
+    "InquiryCompiler",
     "ClosureRule",
     "InquiryState",
     "Anchor",
@@ -53,6 +58,7 @@ __all__ = [
     "Decision",
     "DecisionState",
     "Inquiry",
+    "InquiryType",
     "InquiryPacket",
     "Interpretation",
     "InterpretationStatus",
