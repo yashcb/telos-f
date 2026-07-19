@@ -21,6 +21,17 @@ class Stakes(StrEnum):
     CRITICAL = "critical"
 
 
+class InquiryType(StrEnum):
+    """Primary kind of inquiry inferred or supplied for Version 0.1."""
+
+    FACT = "fact"
+    INTERPRETATION = "interpretation"
+    JUDGMENT = "judgment"
+    DECISION = "decision"
+    EXPLORATION = "exploration"
+    CREATION = "creation"
+
+
 class RequestedAction(StrEnum):
     """Operation requested by the inquiry initiator."""
 
@@ -222,6 +233,12 @@ class Inquiry:
     requested_action: RequestedAction
     closure_policy: ClosurePolicy
     available_resources: list[str] = field(default_factory=list)
+    inquiry_type: InquiryType | None = None
+    explicit_user_context: str | None = None
+    assumed_context: list[str] = field(default_factory=list)
+    appears_compressed_or_metaphorical: bool = False
+    evident_speech_act_beyond_literal_wording: bool = False
+    speech_act_note: str | None = None
 
 
 @dataclass(slots=True)
