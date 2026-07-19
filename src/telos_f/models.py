@@ -169,13 +169,16 @@ class Decision(StrEnum):
     """The closure regulator's current posture."""
 
     RESOLVE = "resolve"
+    RESOLVE_PROVISIONALLY = "resolve_provisionally"
     CONTINUE = "continue"
     INVESTIGATE = "investigate"
+    DISAMBIGUATE = "disambiguate"
     CONTRAST = "contrast"
     SUSPEND = "suspend"
     ROLLBACK = "rollback"
     PRESERVE_OPENNESS = "preserve_openness"
     ASK_USER = "ask_user"
+    REPAIR_OR_STOP = "repair_or_stop"
     TRANSFER_TO_HUMAN = "transfer_to_human"
 
 
@@ -371,6 +374,7 @@ class DecisionState:
     unresolvedness_type: UnresolvednessType
     next_actions: list[str] = field(default_factory=list)
     stopping_condition: StoppingCondition | None = None
+    metadata: dict[str, object] = field(default_factory=dict)
 
 
 @dataclass(slots=True)
