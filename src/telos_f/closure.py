@@ -92,6 +92,8 @@ class ClosureRegulator:
             return HUMAN_OWNED_JUDGMENT, evidence
         if evidence := self._path_drift(state):
             return PATH_DRIFT, evidence
+        if evidence := self._factual_contradiction_requiring_investigation(state):
+            return MISSING_EVIDENCE, evidence
         if evidence := self._incoherence(state):
             return INCOHERENCE, evidence
         if evidence := self._missing_evidence(state):
@@ -132,6 +134,15 @@ class ClosureRegulator:
             )
         ]
         return {"drifted_paths": drifted_paths, "failed_steps": failed_steps} if drifted_paths or failed_steps else {}
+
+    def _factual_contradiction_requiring_investigation(self, state: InquiryPacket) -> dict[str, object]:
+        tensions = [
+            t.id
+            for t in state.tensions
+            if t.type is TensionType.CONTRADICTION
+            and ResolutionOption.INVESTIGATE in t.resolution_options
+        ]
+        return {"factual_contradictions": tensions} if tensions else {}
 
     def _incoherence(self, state: InquiryPacket) -> dict[str, object]:
         tensions = [
